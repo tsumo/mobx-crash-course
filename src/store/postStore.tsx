@@ -1,33 +1,29 @@
 import React from "react";
 import { useLocalStore } from "mobx-react-lite";
+import { IPost } from "../domain/postDomain";
 
-const createStore = () => ({
-  items: [
-    "first",
-    "second",
-    "third",
-    "fourth",
-    "fifth",
-    "sixth",
-    "seventh",
-    "eighth",
-    "ninth"
-  ],
+type TStore = {
+  posts: IPost[];
+  postCount: number;
+  addPost: (post: IPost) => void;
+  removePost: (id: number) => void;
+};
 
-  get itemCount() {
-    return this.items.length;
+const createStore = (): TStore => ({
+  posts: [],
+
+  get postCount() {
+    return this.posts.length;
   },
 
-  addItem(item: string) {
-    this.items.push(item);
+  addPost(post) {
+    this.posts.push(post);
   },
 
-  removeItem() {
-    this.items.splice(-1, 1);
+  removePost(id) {
+    this.posts = this.posts.filter(post => post.id !== id);
   }
 });
-
-type TStore = ReturnType<typeof createStore>;
 
 const StoreContext = React.createContext<TStore | null>(null);
 

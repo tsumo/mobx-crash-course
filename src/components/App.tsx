@@ -1,13 +1,13 @@
 import React from "react";
-import Items from "./Items";
+import Posts from "./Posts";
 import Container from "@material-ui/core/Container/Container";
-import { StoreProvider } from "../store";
+import { StoreProvider } from "../store/postStore";
 
 const App = () => {
   return (
     <StoreProvider>
       <Container maxWidth="sm">
-        <Items />
+        <Posts />
       </Container>
     </StoreProvider>
   );
