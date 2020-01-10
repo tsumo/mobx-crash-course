@@ -29,17 +29,17 @@ const createStore = () => ({
 
 type TStore = ReturnType<typeof createStore>;
 
-const storeContext = React.createContext<TStore | null>(null);
+const StoreContext = React.createContext<TStore | null>(null);
 
 export const StoreProvider: React.FC = ({ children }) => {
   const store = useLocalStore(createStore);
   return (
-    <storeContext.Provider value={store}>{children}</storeContext.Provider>
+    <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
   );
 };
 
 export const useStore = () => {
-  const store = React.useContext(storeContext);
+  const store = React.useContext(StoreContext);
   if (!store) {
     throw new Error("useStore must be used within a StoreProvider.");
   }
