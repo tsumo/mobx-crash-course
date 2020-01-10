@@ -24,11 +24,17 @@ const Post = (props: IItemProps) => {
           item
           container
           direction="row"
-          alignItems="center"
+          alignItems="flex-start"
           justify="space-between"
         >
-          <Typography variant="h4">{post.title}</Typography>
-          <IconButton size="small" onClick={() => removePost(post.id)}>
+          <Typography variant="h4" className={styles.title}>
+            {post.title}
+          </Typography>
+          <IconButton
+            size="small"
+            className={styles.closeButton}
+            onClick={() => removePost(post.id)}
+          >
             <CloseIcon />
           </IconButton>
         </Grid>

@@ -1,17 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import Grid from "@material-ui/core/Grid/Grid";
 import Button from "@material-ui/core/Button/Button";
 import Box from "@material-ui/core/Box/Box";
+import Typography from "@material-ui/core/Typography/Typography";
+import LinearProgress from "@material-ui/core/LinearProgress/LinearProgress";
 import { useStore } from "../store/postStore";
 import Post from "./Post";
 import { useAutorun } from "../hooks";
-import { Typography } from "@material-ui/core";
 
 const Posts = observer(() => {
-  const { posts, postCount, addPost } = useStore();
+  const { posts, loading, error, postCount, addPost, getAllPosts } = useStore();
+
+  useEffect(() => getAllPosts(), [getAllPosts]);
 
   useAutorun(() => (document.title = `${postCount} - total`));
+
+  if (error) {
+    return <Typography color="textSecondary">Network error</Typography>;
+  }
+
+  if (loading) {
+    return <LinearProgress />;
+  }
 
   return (
     <>
@@ -35,7 +46,7 @@ const Posts = observer(() => {
       <Grid container spacing={2}>
         <Grid container item xs={12} spacing={3}>
           {posts.map(post => (
-            <Grid item xs={4} key={post.id}>
+            <Grid item xs={12} key={post.id}>
               <Post post={post} />
             </Grid>
           ))}
