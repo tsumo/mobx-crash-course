@@ -10,6 +10,9 @@ const useStyles = makeStyles(theme => ({
   },
   closeButton: {
     flexBasis: "5%"
+  },
+  body: {
+    marginTop: theme.spacing(2)
   }
 }));
 

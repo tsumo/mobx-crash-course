@@ -38,7 +38,9 @@ const Post = (props: IItemProps) => {
             <CloseIcon />
           </IconButton>
         </Grid>
-        <Typography variant="body1">{post.body}</Typography>
+        <Typography variant="body1" className={styles.body}>
+          {post.body}
+        </Typography>
       </Grid>
     </Paper>
   );
