@@ -1,5 +1,7 @@
 # Checking out Mobx
 
+Build available at https://tsumo.github.io/mobx-crash-course/
+
 Single mobx store is created and passed to the application
 through the Context.
 
