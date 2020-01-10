@@ -23,7 +23,7 @@ const createStore = (): TStore => ({
   },
 
   addPost(post) {
-    this.posts.push(post);
+    this.posts.unshift(post);
   },
 
   removePost(id) {
